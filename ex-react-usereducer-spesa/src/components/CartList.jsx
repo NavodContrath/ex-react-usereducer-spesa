@@ -1,18 +1,6 @@
-export default function CartList({ addedProducts, setAddedProducts }) {
-    function removeFromCart(item) {
-        setAddedProducts(prev => {
-            return prev.filter(p => p.name !== item.name)
-        })
-    }
-    function updateProductsQuantity(name, value) {
-        setAddedProducts(prev => {
-            return prev.map(p => p.name === name ? { ...p, quantity: Number(value) } : p)
-        })
-
-    }
+export default function CartList({ addedProducts, dispatch }) {
     const totalQuantity = addedProducts.reduce((acc, curr) => acc + curr.quantity, 0)
     const totalPrice = addedProducts.reduce((acc, curr) => acc + curr.quantity * curr.price, 0)
-
     return (
         <div className="container">
             {addedProducts.length > 0 ? <h1>Cart List</h1> : <></>}
@@ -28,8 +16,8 @@ export default function CartList({ addedProducts, setAddedProducts }) {
                                         className="card-subtitle mb-2 text-muted"
                                         min={1}
                                         value={p.quantity}
-                                        onChange={(e) => { updateProductsQuantity(p.name, e.target.value) }}></input>
-                                    <button onClick={() => { removeFromCart(p) }}>Remove from cart</button>
+                                        onChange={(e) => { dispatch({ type: 'UPDATE_QUANTITY', name: p.name, value: e.target.value }) }}></input>
+                                    <button onClick={() => { dispatch({ type: 'REMOVE_ITEM', item: p }) }}>Remove from cart</button>
                                 </div>
                             </div>
                         </div>
