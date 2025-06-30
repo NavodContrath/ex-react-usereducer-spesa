@@ -27,7 +27,7 @@ export default function ProductList({ setAddedProducts }) {
                                     <div className="card">
                                         <div className="card-body">
                                             <h5 className="card-title">{product.name}</h5>
-                                            <h6 className="card-subtitle mb-2 text-muted ">{product.price}</h6>
+                                            <h6 className="card-subtitle mb-2 text-muted ">Price: {product.price}&euro;</h6>
                                             <button onClick={() => { addToCart(product) }}>Add To Cart</button>
                                         </div>
                                     </div>

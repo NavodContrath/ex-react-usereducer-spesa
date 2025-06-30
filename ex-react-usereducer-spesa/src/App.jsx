@@ -11,7 +11,7 @@ function App() {
   return (
     <>
       <ProductList setAddedProducts={setAddedProducts} />
-      <CartList addedProducts={addedProducts} />
+      <CartList addedProducts={addedProducts} setAddedProducts={setAddedProducts} />
     </>
   )
 }
